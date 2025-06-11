@@ -15,8 +15,8 @@
 <body>
   <model-viewer
     id="miModelo"
-    src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/pyramid.glb"
-    ios-src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/pyramid.usdz"
+    src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/modelo.glb"
+    ios-src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/modelo.usdz"
     alt="Mi Modelo AR"
     ar
     ar-modes="scene-viewer quick-look webxr"
@@ -25,13 +25,31 @@
   ></model-viewer>
 
   <script>
+    const TARGET = 'https://www.nexustours.com?utm_source=nexusNFC&utm_medium=AR&utm_campaign=CUN-NFC';
+    let timerStarted = false;
+
+    function startRedirectTimer() {
+      if (timerStarted) return;
+      timerStarted = true;
+      console.log('▶️ Iniciando timer de 15 s para redirección');
+      setTimeout(() => {
+        console.log('🔄 Redirigiendo a:', TARGET);
+        window.location.href = TARGET;
+      }, 15000);
+    }
+
     const viewer = document.getElementById('miModelo');
 
+    // Cuando arranque AR
     viewer.addEventListener('ar-start', () => {
-      setTimeout(() => {
-        window.location.href = 
-          'https://www.nexustours.com?utm_source=nexusNFC&utm_medium=AR&utm_campaign=CUN-NFC';
-      }, 15000);
+      console.log('✅ Evento ar-start capturado');
+      startRedirectTimer();
+    });
+
+    // Fallback si no usan AR o ar-start no llega
+    window.addEventListener('load', () => {
+      console.log('✅ Página cargada → fallback de timer');
+      startRedirectTimer();
     });
   </script>
 </body>
