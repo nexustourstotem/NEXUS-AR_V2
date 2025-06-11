@@ -15,8 +15,8 @@
 <body>
   <model-viewer
     id="miModelo"
-    src="modelo.glb"
-    ios-src="modelo.usdz"
+    src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/pyramid.glb"
+    ios-src="https://github.com/nexustourstotem/NEXUS-AR_V2/releases/download/v1.0/pyramid.usdz"
     alt="Mi Modelo AR"
     ar
     ar-modes="scene-viewer quick-look webxr"
@@ -29,7 +29,8 @@
 
     viewer.addEventListener('ar-start', () => {
       setTimeout(() => {
-        window.location.href = 'https://www.tusitio.com';
+        window.location.href = 
+          'https://www.nexustours.com?utm_source=nexusNFC&utm_medium=AR&utm_campaign=CUN-NFC';
       }, 15000);
     });
   </script>
